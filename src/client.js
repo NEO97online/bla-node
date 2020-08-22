@@ -23,7 +23,7 @@ function render() {
   rl.prompt()
 }
 
-// Render prompt
+// Render prompts
 render()
 
 // Continue prompt
