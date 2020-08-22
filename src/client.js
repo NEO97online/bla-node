@@ -17,10 +17,9 @@ const history = [
 
 function render() {
   console.clear()
-  // todo: print message history
-  for (const message of history) {
-    console.log(message)
-  }
+
+  for (const message of history) console.log(message)
+
   rl.prompt()
 }
 
