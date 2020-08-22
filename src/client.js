@@ -10,10 +10,7 @@ const rl = readline.createInterface({
   prompt: username
 })
 
-const history = [
-  'Clark Kozak> yo whats up',
-  'CoreAPI> Deployment to Heroku failed!'
-]
+const history = []
 
 function render() {
   console.clear()
