@@ -31,6 +31,6 @@ function onClientConnection(sock) {
   })
 }
 
-server.listen(port, host, () => {
+server.listen(port, () => {
   console.log(`Server started on ${host}:${port}`) 
 })
