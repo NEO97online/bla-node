@@ -8,16 +8,22 @@ const users = []
 function onClientConnection(sock) {
   console.log(`${sock.remoteAddress}:${sock.remotePort} Connected `)
 
+  for (const user of users) {
+    // Broadcast this message to other users expect the user who sent it
+    user.sock.write(JSON.stringify({ nick: 'Bla', msg: 'A wild user has appeared' }))
+  }
+
   users.push({ sock })
 
   sock.on('data', data => {
+    const { nick, msg } = JSON.parse(data.toString())
     // Log data from the client
     console.log(`${sock.remoteAddress}:${sock.remotePort} Says : ${data.toString()} `)
     // Send back the data to the client
     for (const user of users) {
       // Broadcast this message to other users expect the user who sent it
       if (user.sock !== sock) {
-        user.sock.write(`Anon> ${data}`)
+        user.sock.write(JSON.stringify({ nick, msg }))
       }
     }
   })
