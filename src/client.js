@@ -1,6 +1,6 @@
 // Interactive Mode
 const readline = require('readline')
-const net = require('net')
+const http = require('http')
 
 const port =
  process.env.PORT
@@ -9,6 +9,7 @@ const port =
 const host = process.env.HOST || 'localhost'
 
 let nick = 'blanon'
+let conn
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -78,29 +79,42 @@ rl.on('line', (msg) => {
 })
 
 // Client socket connection
-const conn = net.connect({ host, port }, () => {
+const req = http.request({
+  host,
+  port,
+  headers: {
+    'Connection': 'Upgrade',
+    'Upgrade': 'Bla'
+  }
+})
+req.end()
+req.on('upgrade', (res, socket, upgradeHead) => {
+  printMessage('Bla', 'got upgraded!')
   printMessage('Bla', `You have to connected to ${host}:${port}`)
   render()
+
+  socket.on('data', data => {
+    // data is a Buffer
+    // data will be return JSON
+    // Use JSON for MVP, Custom protocol for production
+    // { "nick": string, "msg": string }
+  
+    const msgObj = JSON.parse(data.toString())
+    console.log(msgObj)
+    printMessage(msgObj.nick, msgObj.msg)
+    render()
+  })
+  
+  socket.on('error', (error) => {
+    console.error('Something went wrong when connecting to socket.: ' + error)
+  })
+  
+  socket.on('end', () => {
+    console.log('disconnected from server')
+  })
+
+  conn = socket
 })
 
-conn.on('data', data => {
-  // data is a Buffer
-  // data will be return JSON
-  // Use JSON for MVP, Custom protocol for production
-  // { "nick": string, "msg": string }
-
-  const msgObj = JSON.parse(data.toString())
-  console.log(msgObj)
-  printMessage(msgObj.nick, msgObj.msg)
-  render()
-})
-
-conn.on('error', (error) => {
-  console.error('Something went wrong when connecting to socket.: ' + error)
-})
-
-conn.on('end', () => {
-  console.log('disconnected from server')
-})
-
+// exit on interrupt signal (Ctrl+C usually)
 rl.on('SIGINT', exit)
