@@ -6,6 +6,8 @@ const server = net.createServer(onClientConnection)
 const users = []
 
 function onClientConnection(sock) {
+  console.log(`${sock.remoteAddress}:${sock.remotePort} Connected `)
+
   users.push({ sock })
 
   sock.on('data', data => {
