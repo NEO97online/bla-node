@@ -98,9 +98,16 @@ req.on('upgrade', (res, socket, upgradeHead) => {
     // data will be return JSON
     // Use JSON for MVP, Custom protocol for production
     // { "nick": string, "msg": string }
+
+    const strData = data.toString()
+
+    // ignore "heartbeat" messages from the server
+    if (strData === 'heartbeat') {
+      return
+    }
   
-    const msgObj = JSON.parse(data.toString())
-    console.log(msgObj)
+    const msgObj = JSON.parse(strData)
+
     printMessage(msgObj.nick, msgObj.msg)
     render()
   })

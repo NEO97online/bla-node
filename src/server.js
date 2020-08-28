@@ -14,6 +14,18 @@ function onClientConnection(socket) {
   
   let latestNick = "blanon"
 
+  // keep the socket alive with a heartbeat every second
+  const heartbeat = () => {
+    if (!socket || socket.readyState !== 'open') {
+      return
+    }
+    socket.write('heartbeat')
+    setTimeout(heartbeat, 1000)
+  }
+
+  // initialize heartbeat on socket open
+  heartbeat()
+
   socket.on('data', data => {
     const { nick, msg } = JSON.parse(data.toString())
     latestNick = nick
