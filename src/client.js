@@ -88,7 +88,7 @@ const req = http.request({
   }
 })
 req.end()
-req.on('upgrade', (res, socket, upgradeHead) => {
+req.on('upgrade', (_res, socket, _upgradeHead) => {
   printMessage('Bla', 'got upgraded!')
   printMessage('Bla', `You have to connected to ${host}:${port}`)
   render()
@@ -101,8 +101,8 @@ req.on('upgrade', (res, socket, upgradeHead) => {
 
     const strData = data.toString()
 
-    // ignore "heartbeat" messages from the server
-    if (strData === 'heartbeat') {
+    // ignore "h" heartbeat messages from the server
+    if (strData === 'h') {
       return
     }
   

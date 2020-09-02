@@ -19,7 +19,8 @@ function onClientConnection(socket) {
     if (!socket || socket.readyState !== 'open') {
       return
     }
-    socket.write('heartbeat')
+
+    socket.write('h')
     setTimeout(heartbeat, 1000)
   }
 
@@ -51,12 +52,13 @@ function onClientConnection(socket) {
   })
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((_req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' })
   res.end('ok')
 })
 
-server.on('upgrade', (req, socket, head) => {
+
+server.on('upgrade', (_req, socket, _head) => {
   socket.write('HTTP/1.1 101 Bla Protocol Handshake\r\n' +
                'Upgrade: Bla\r\n' +
                'Connection: Upgrade\r\n' +
