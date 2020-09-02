@@ -1,21 +1,31 @@
 ## Todo 
 - handling intitial args ****
+  - PORT + HOST 
 - Non-interactive mode ****
-- Usernames (duh!)
 - Console colors? `chalk` **
-  - Prior initial connection then:
-- prompt for host
-- prompt for nick
+  - `/color` to set prompt name
+- Prior initial connection then:
+  - prompt for host
+  - prompt for nick
 Interactive Commands ***
-- ~~/disconnect, /quit, /exit~~ 
-- ~~/nick <name>~~
-- /pm <nick> <msg> *****
   - output: (PM) <user>: <mgs>
 - /invite <email> -> send an email to name@example.com with installation instructions and oneliner terminal ****
 - when something enters a room broadcast it happening
-- /connect
+- `/connect`
+- `/help`
+
+## Done
+- ~~/disconnect, /quit, /exit~~ 
+- ~~Usernames (duh!)~~
+  - ~~/nick <name>~~
+- ~~Heroku -> IP and a port; where do we connect to (specifiy a connection)~~
+
 ## Backburner
-- Heroku -> IP and a port; where do we connect to (specifiy a connection)
+- tab completion **
+- /pm <nick> <msg> *****
+
+## Bugs
+~~- Curosr moves when another person sends a message ***~~a
 
 ## Timesheet
 - Session 1:
