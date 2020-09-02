@@ -1,28 +1,23 @@
 // Interactive Mode
 const readline = require('readline')
 const createConnection = require('./connection')
-
-const port =
- process.env.PORT
-  // || process.env.argv[] // Flag for specified port
-  || 8144 // blah
-  const host = process.env.HOST || 'localhost'
+const parseArgs = require('./parse-args')
   
 async function main() {
   const history = []
-  let nick = 'blanon'
-  
+
+  const { host, port, nick } = parseArgs(process.argv.slice(2))
+
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     prompt: nick + '> '
   })
 
-  const conn = await createConnection(host, port, (senderNick, message) => {
-    printMessage(senderNick, message)
-    render()
-  })
-  
+  function printMessage(nickname, msg) {
+    history.push(`${nickname}> ${msg}`)
+  }
+
   function render() {
     console.clear()
   
@@ -30,10 +25,13 @@ async function main() {
   
     rl.prompt(true)
   }
-  
-  function printMessage(nickname, msg) {
-    history.push(`${nickname}> ${msg}`)
-  }
+
+  printMessage('Bla', `Port: ${port}, Host: ${host}, Nick: ${nick}`)
+
+  const conn = await createConnection(host, port, (senderNick, message) => {
+    printMessage(senderNick, message)
+    render()
+  })
   
   // Render prompts
   render()

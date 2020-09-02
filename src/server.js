@@ -57,7 +57,6 @@ const server = http.createServer((_req, res) => {
   res.end('ok')
 })
 
-
 server.on('upgrade', (_req, socket, _head) => {
   socket.write('HTTP/1.1 101 Bla Protocol Handshake\r\n' +
                'Upgrade: Bla\r\n' +
