@@ -1,22 +1,16 @@
 ## Todo 
 *Interactive Command*
-- `/help`
-  - on inital comand
-  - showing commands when messages
-     - `/commands`
-      <!-- { command: { required: true, helpMessage: 'this command shows other commands}} -->
-       - shows what each command does
 - when something enters a room broadcast it happening
   - join event
   - leave event
 
 *Non-Interactive Commands*
 - Have system send messages
-  - Required params as client: port, nick, host
   - `bla -p 80 -h localhost -n API -m "some message"
   - join room silently
 
 ## Done
+~~- `/help`~~
 - ~~/disconnect, /quit, /exit~~ 
 - ~~Usernames (duh!)~~
   - ~~/nick <name>~~
@@ -33,10 +27,15 @@
   - `/color` to set prompt name
 - adding custom commands
   - `/invite` -> invite someone to a bla server
-- verifcation & credentials
+- verification & credentials
+  - Dont allow "Bla" username
 - ~~handling intitial args ****~~
   - ~~PORT + HOST ~~
 - saved config profile (~/.config/bla) 
+- status line
+  - to display port, host, ip, nick, etc.
+  - cuz we have a heartbeat, and we can display if the connection is live
+- Bla server and Bla Client development kit
 
 ## Bugs
 ~~- Cursor moves when another person sends a message ***~~
@@ -48,3 +47,7 @@
   - 2:46pm - 4:26pm -> 1 hour 40 minutes
 - Session 3:
   - 3:15pm - 5:00pm -> 1 hour 45 minutes
+- Session 4:
+  - 4:20pm - 6:00pm -> 1 hour 40 minutes
+
+Total: 7 hour 5 minutes

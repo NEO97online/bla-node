@@ -3,7 +3,7 @@ const http = require('http')
 // Client socket connection
 module.exports = function createConnection(host, port, onMessage) {
   return new Promise((resolve, reject) => {
-    const req= http.request({
+    const req = http.request({
       host,
       port,
       headers: {
@@ -15,8 +15,8 @@ module.exports = function createConnection(host, port, onMessage) {
     req.end()
     
     req.on('upgrade', (_res, socket, _upgradeHead) => {
-      onMessage('Bla', 'got upgraded!')
-      onMessage('Bla', `You have to connected to ${host}:${port}`)
+      // If not defined, host will be `localhost`
+      onMessage('Bla', `You have to connected to ${host || 'localhost'}:${port}`)
 
       socket.on('data', data => {
         // data is a Buffer
