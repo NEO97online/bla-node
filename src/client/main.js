@@ -8,7 +8,12 @@ async function main() {
   const history = []
   let conn
 
-  let { host = "localhost", port = 8144, nick = "blanon" } = parseArgs(process.argv.slice(2))
+  let { 
+    host = "localhost", 
+    port = 8144, 
+    nick = "blanon",
+    message, 
+  } = parseArgs(process.argv.slice(2))
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -34,21 +39,23 @@ async function main() {
       printMessage(senderNick, message)
       render()
     })
+    if (message && message.length > 0) {
+      sendMessage(nick, message, () => exit(message))
+    }
   }
-
+  
   if (host || port) {
     connect(host, port)
   }
   
   // Render prompts
   render()
-  
-  function exit() {
-    console.clear()
-    console.log('You left the chat.')
-    process.exit(0)
+  if (host || port) {
+    connect(host, port)
   }
   
+  // Render prompts
+  render()
   rl.on('line', (msg) => {
   
     if (msg.startsWith('/')) {

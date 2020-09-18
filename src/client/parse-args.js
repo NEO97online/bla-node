@@ -1,6 +1,6 @@
 
 module.exports = function parseArgs(args) {  
-  let port, host, nick
+  let port, host, nick, message
 
   for (let i = 0; i < args.length; i++) { 
     switch (args[i]) {
@@ -19,10 +19,15 @@ module.exports = function parseArgs(args) {
         nick = args[i + 1]
         i++
         break
+      case '-m':
+      case '--message':
+        message = args[i + 1]
+        i++
+        break
       default:
         console.log('Invalid argument: ' + args[i])
     }
   }
 
-  return { port, host, nick }
+  return { port, host, nick, message }
 }
