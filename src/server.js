@@ -45,8 +45,17 @@ function onClientConnection(socket) {
     }
   })
 
+  // TODO
+  // Remove `user` from `users` after the `user` discounnts
+
   // Handle client connection termination
-  socket.on('close', () => {
+  socket.on('end', () => {
+    for (const user of users) {
+      // Broadcast this message to other users expect the user who sent it
+      if (user.socket !== socket) {
+        socket.write(JSON.stringify({ nick: 'Bla', msg: `${latestNick} has left the terminal.` }))
+      }
+    }
     console.log(`${latestNick} terminated the connection`)
   })
 
