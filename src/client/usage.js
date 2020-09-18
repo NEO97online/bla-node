@@ -15,12 +15,7 @@ const commands = {
     description: "Alias for disconnect"
   },
   nick: {
-    description: "Assign yourself a nickname",
-    arguments: {
-      "name": {
-        required: true
-      }
-    }
+    description: "Assign yourself a nickname"
   }
 }
 
