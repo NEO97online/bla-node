@@ -8,12 +8,12 @@ async function main() {
   const history = []
   let conn
 
-  const { host, port, nick = "blanon" } = parseArgs(process.argv.slice(2))
+  let { host = "localhost", port = 8144, nick = "blanon" } = parseArgs(process.argv.slice(2))
 
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: nick + '> '
+    prompt: nick + '> ',
   })
 
   function printMessage(nickname, msg) {
