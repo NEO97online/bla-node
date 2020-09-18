@@ -1,15 +1,8 @@
 ## Todo 
-*Interactive Command*
-- when something enters a room broadcast it happening
-  - join event
-  - leave event
-
-*Non-Interactive Commands*
-- Have system send messages
-  - `bla -p 80 -h localhost -n API -m "some message"
-  - join room silently
+- README.md update
 
 ## Done
+~~- when something enters / leaves a room broadcast it happening~~
 ~~- `/help`~~
 - ~~/disconnect, /quit, /exit~~ 
 - ~~Usernames (duh!)~~
@@ -17,8 +10,18 @@
 - ~~Heroku -> IP and a port; where do we connect to (specifiy a connection)~~
 - ~~handling intitial args ****~~
   - ~~PORT + HOST ~~
+- ~~Have system send messages~~
+  - ~~`bla -p 80 -h localhost -n API -m "some message"~~
+  - ~~join room silently~~
+- ~~handling intitial args ****~~            
 
 ## Backburner
+- `echo 'test' | bla -m`
+- Help / man for non-interactive mode
+- compile with NCC
+- Emojis
+- heroku click deploy
+- Server: Remove `user` from `users` after the `user` discounnts
 - tab completion **
 - /pm <nick> <msg> *****
 - Console colors? `chalk` **
@@ -28,9 +31,7 @@
 - adding custom commands
   - `/invite` -> invite someone to a bla server
 - verification & credentials
-  - Dont allow "Bla" username
-- ~~handling intitial args ****~~
-  - ~~PORT + HOST ~~
+  - Dont allow "Bla" username"                                                                                                 
 - saved config profile (~/.config/bla) 
 - status line
   - to display port, host, ip, nick, etc.
@@ -49,5 +50,9 @@
   - 3:15pm - 5:00pm -> 1 hour 45 minutes
 - Session 4:
   - 4:20pm - 6:00pm -> 1 hour 40 minutes
+- Session 5:
+  - 12:45pm - 2:30pm -> 1 hour 45 minutes
 
-Total: 7 hour 5 minutes
+Total: 8 hour 50 minutes
+
+COMPLETED!!!
