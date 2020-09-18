@@ -28,16 +28,20 @@ function onClientConnection(socket) {
   heartbeat()
 
   socket.on('data', data => {
-    const { nick, msg } = JSON.parse(data.toString())
-    latestNick = nick
-    // Log data from the client
-    console.log(data.toString())
-    // Send back the data to the client
-    for (const user of users) {
-      // Broadcast this message to other users expect the user who sent it
-      if (user.socket !== socket) {
-        user.socket.write(JSON.stringify({ nick, msg }))
+    try {
+      const { nick, msg } = JSON.parse(data.toString())
+      latestNick = nick
+      // Log data from the client
+      console.log(data.toString())
+      // Send back the data to the client
+      for (const user of users) {
+        // Broadcast this message to other users expect the user who sent it
+        if (user.socket !== socket) {
+          user.socket.write(JSON.stringify({ nick, msg }))
+        }
       }
+    } catch (err) {
+      socket.write(JSON.stringify({ nick: 'Bla', msg: 'Error parsing your message' }))
     }
   })
 
